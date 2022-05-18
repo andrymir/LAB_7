@@ -71,16 +71,24 @@ void MainWindow::openCars()
 
 void MainWindow::read_file(AbstractReader &rd)
 {
-    if (rd.is_open())
-{
+     if (rd.is_open()){
         //Чтение из файла в вектор
-           cars.clear();
-           Cars car;
-           while(rd >> car){
-           cars.push_back(car);}
-           }
-           else {
-        ui->textBrowser->RedText("Не смог открыть файл!");
+        reader.count_line=0;
+
+        //cars = reader.readAll();
+        cars.clear();
+        Car car;
+        while(true){
+        reader.count_line++;
+        try {
+        if(!(rd >> car))break;
+        cout << car << endl;
+        cars.push_back(car);
+        }  catch (CSVException &c) {
+            std::cerr<< "Error in line " << c.GetLine()<<endl;
+        }
+        }
+
     }
 }
 
