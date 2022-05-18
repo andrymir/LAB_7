@@ -77,7 +77,7 @@ void MainWindow::read_file(AbstractReader &rd)
 
      
         cars.clear();
-        Car car;
+        Cars car;
         while(true){
         rd.count_line++;
         try {
