@@ -73,13 +73,13 @@ void MainWindow::read_file(AbstractReader &rd)
 {
      if (rd.is_open()){
         //Чтение из файла в вектор
-        reader.count_line=0;
+        rd.count_line=0;
 
-        //cars = reader.readAll();
+     
         cars.clear();
         Car car;
         while(true){
-        reader.count_line++;
+        rd.count_line++;
         try {
         if(!(rd >> car))break;
         cout << car << endl;
